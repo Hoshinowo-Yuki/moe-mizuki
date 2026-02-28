@@ -49,6 +49,24 @@
   font-display: swap;
 }
 
+/* 导入 LXGWZhenKaiGB 字体 */
+@font-face {
+  font-family: "LXGWZhenKaiGB";
+  src: url("/assets/font/LXGWZhenKaiGB-Regular.ttf") format("woff2");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+/* 导入 HYTMR 字体 */
+@font-face {
+  font-family: "HYTMR";
+  src: url("/assets/font/HYTMR55W.ttf") format("woff2");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
 /* 确保平滑滚动 */
 html {
 	@apply scroll-smooth;
