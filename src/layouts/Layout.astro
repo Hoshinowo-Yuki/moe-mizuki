@@ -1358,3 +1358,26 @@ function disableAnimation() {
 <script>
 	import "../scripts/theme-optimizer.js";
 </script>
+
+
+<!-- Change favicon when the user away from the site, or otherwise -->
+<script>
+	const originalTitle = document.title;
+	const favicons = document.querySelectorAll('link[rel="icon"]');
+	const originalHrefs = [...favicons].map(link => link.href);
+	let timeoutId = null;
+	
+	document.addEventListener('visibilitychange', () => {
+	  if (document.hidden) {
+	    if (timeoutId) clearTimeout(timeoutId);
+	    document.title = '(つ﹏⊂) 你個嘢壞咗呀...';
+	    favicons.forEach(link => link.href = '/favicon/failure.ico');
+	  } else {
+	    document.title = '(●´3｀●) 復活成功';
+	    favicons.forEach((link, i) => link.href = originalHrefs[i]);
+	    timeoutId = setTimeout(() => {
+	      document.title = originalTitle;
+	    }, 1500);
+	  }
+	});
+</script>
