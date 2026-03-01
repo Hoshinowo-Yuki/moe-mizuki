@@ -1,4 +1,4 @@
-import Key from "../i18nKey";
+import Key from "../Key";
 import type { Translation } from "../translation";
 
 export const zh_TW: Translation = {
@@ -30,15 +30,22 @@ export const zh_TW: Translation = {
 	[Key.friendsSubtitle]: "發現更多優秀網站",
 	[Key.friendsSearchPlaceholder]: "搜索友鏈名稱或描述...",
 	[Key.friendsFilterAll]: "全部",
-	[Key.friendsNoResults]: "未找到匹配的友鏈",
-	[Key.friendsVisit]: "訪問",
-	[Key.friendsCopyLink]: "複製鏈接",
+	[Key.friendsNoResults]: "找不到符合的友鏈",
+	[Key.friendsVisit]: "造訪",
+	[Key.friendsCopyLink]: "複製連結",
 	[Key.friendsCopySuccess]: "已複製",
 	[Key.friendsTags]: "標籤",
 	[Key.untitled]: "無標題",
 	[Key.uncategorized]: "未分類",
 	[Key.noTags]: "無標籤",
-
+	[Key.linksSubtitle]: '實用網站和資源收藏',
+	[Key.linksSearchPlaceholder]: '搜尋連結或描述...',
+	[Key.linksFilterAll]: '全部',
+	[Key.linksVisit]: '造訪',
+	[Key.linksCopyLink]: '複製連結',
+	[Key.linksCopySuccess]: '已複製',
+	[Key.linksNoResults]: '找不到符合的連結',
+	
 	[Key.wordCount]: "字",
 	[Key.wordsCount]: "字",
 	[Key.minuteCount]: "分鐘",
