@@ -39,7 +39,7 @@ export const en: Translation = {
 	[Key.uncategorized]: "Uncategorized",
 	[Key.noTags]: "No Tags",
 
-	[Key.links]: "Useful Links",
+	[Key.links]: "UsefulLinks",
 	[Key.linksSubtitle]: "Discover more great websites",
 	[Key.linksSearchPlaceholder]: "Search links or descriptions...",
 	[Key.linksFilterAll]: "All",
