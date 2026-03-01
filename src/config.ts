@@ -269,21 +269,21 @@ export const navBarConfig: NavBarConfig = {
 			children: [
 				{
 					name: "GitHub",
-					url: "https://github.com/matsuzaka-yuki/Mizuki",
+					url: "https://github.com/shirakamiNeko/Mizuki-Revanced",
 					external: true,
 					icon: "fa7-brands:github",
 				},
 				{
-					name: "Bilibili",
-					url: "https://space.bilibili.com/701864046",
+					name: "YouTube",
+					url: "https://www.youtube.com/@KazenotomodachiUwU",
 					external: true,
-					icon: "fa7-brands:bilibili",
+					icon: "mdi:youtube",
 				},
 				{
-					name: "Gitee",
-					url: "https://gitee.com/matsuzakayuki/Mizuki",
+					name: "Threads",
+					url: "https://threads.com/@goldenlight6628",
 					external: true,
-					icon: "mdi:git",
+					icon: "simple-icons:threads",
 				},
 			],
 		},
@@ -372,14 +372,14 @@ export const profileConfig: ProfileConfig = {
 	},
 	links: [
 		{
-			name: "Bilibili",
-			icon: "fa7-brands:bilibili",
-			url: "https://space.bilibili.com/701864046",
+			name: "YouTube",
+			icon: "mdi:youtube",
+			url: "https://www.youtube.com/@KazenotomodachiUwU",
 		},
 		{
-			name: "Gitee",
-			icon: "mdi:git",
-			url: "https://gitee.com/matsuzakayuki",
+			name: "Threads",
+			icon: "simple-icons:threads",
+			url: "https://threads.com/@goldenlight6628",
 		},
 		{
 			name: "GitHub",
@@ -387,14 +387,14 @@ export const profileConfig: ProfileConfig = {
 			url: "https://github.com/shirakamiNeko",
 		},
 		{
-			name: "Codeberg",
-			icon: "simple-icons:codeberg",
-			url: "https://codeberg.org",
+			name: "Google For Developers",
+			icon: "fa7-brands:google",
+			url: "https://developers.google.com/",
 		},
 		{
 			name: "Discord",
 			icon: "fa7-brands:discord",
-			url: "https://discord.gg/MqW6TcQtVM",
+			url: "https://discord.com/users/885756325798227988",
 		},
 	],
 };
