@@ -1,0 +1,155 @@
+---
+import { getEntry, render } from "astro:content";
+import Markdown from "@components/misc/Markdown.astro";
+import MainGridLayout from "../layouts/MainGridLayout.astro";
+import { getLinksByCategory } from "../data/links";
+
+const linksPost = await getEntry("spec", "links");
+
+if (!linksPost) {
+  throw new Error("links page content not found");
+}
+
+const { Content } = await render(linksPost);
+const linksByCategory = getLinksByCategory();
+const categories = Object.keys(linksByCategory);
+---
+
+<MainGridLayout title="實用連結" description="有用的網站和工具">
+  <div class="flex w-full rounded-(--radius-large) overflow-hidden relative min-h-32">
+    <div class="card-base z-10 px-9 py-6 relative w-full">
+      <!-- 頁面標題 -->
+      <div class="flex flex-col items-start justify-center mb-8">
+        <h1 class="text-4xl font-bold text-90 mb-2 relative
+                  before:w-1 before:h-8 before:rounded-md before:bg-(--primary)
+                  before:absolute before:top-1/2 before:-translate-y-1/2 before:-left-4">
+          實用連結
+        </h1>
+        <p class="text-lg text-60">
+          收集了一些實用的網站和工具
+        </p>
+      </div>
+
+      <!-- 分類篩選 -->
+      <div class="mb-6">
+        <div class="filter-container flex flex-wrap gap-2">
+          <button class="filter-tag active" data-category="all">
+            全部
+          </button>
+          {categories.map(category => (
+            <button class="filter-tag" data-category={category}>
+              {category}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      <!-- 連結卡片 -->
+      {categories.map(category => (
+        <div class="category-section mb-8" data-category={category}>
+          <h2 class="text-2xl font-bold text-90 mb-4">{category}</h2>
+          <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4">
+            {linksByCategory[category].map((link) => (
+              <a 
+                href={link.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="link-card group p-4 rounded-xl border border-(--line-divider)
+                       bg-transparent hover:shadow-lg hover:-translate-y-1
+                       transition-all duration-300"
+                data-category={link.category}
+              >
+                <h3 class="text-lg font-bold text-90 mb-1
+                           group-hover:text-(--primary) transition-colors">
+                  {link.title}
+                </h3>
+                <p class="text-sm text-60 mb-2">{link.desc}</p>
+                <span class="text-xs text-50">{new URL(link.url).hostname}</span>
+              </a>
+            ))}
+          </div>
+        </div>
+      ))}
+
+      <!-- 說明文檔 -->
+      <Markdown class="mt-8 prose dark:prose-invert max-w-none">
+        <Content />
+      </Markdown>
+    </div>
+  </div>
+
+  <script>
+    // 分類篩選功能
+    document.addEventListener('DOMContentLoaded', () => {
+      const filterBtns = document.querySelectorAll('.filter-tag');
+      const sections = document.querySelectorAll('.category-section');
+
+      filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const category = btn.getAttribute('data-category');
+          
+          // 更新按鈕狀態
+          filterBtns.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+
+          // 篩選分類
+          sections.forEach(section => {
+            if (category === 'all' || section.getAttribute('data-category') === category) {
+              section.style.display = 'block';
+            } else {
+              section.style.display = 'none';
+            }
+          });
+        });
+      });
+    });
+  </script>
+</MainGridLayout>
+
+<style>
+  .link-card {
+    animation: fadeInUp 0.5s ease-out forwards;
+    opacity: 0;
+  }
+
+  .link-card:nth-child(1) { animation-delay: 0.05s; }
+  .link-card:nth-child(2) { animation-delay: 0.1s; }
+  .link-card:nth-child(3) { animation-delay: 0.15s; }
+  .link-card:nth-child(4) { animation-delay: 0.2s; }
+  .link-card:nth-child(5) { animation-delay: 0.25s; }
+  .link-card:nth-child(6) { animation-delay: 0.3s; }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .filter-tag {
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--line-divider);
+    border-radius: var(--radius-large);
+    background: var(--btn-regular-bg);
+    color: var(--btn-content);
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .filter-tag:hover:not(.active) {
+    background: var(--btn-hover-bg);
+    border-color: var(--primary);
+  }
+
+  .filter-tag.active {
+    background: var(--primary);
+    color: white;
+    border-color: var(--primary);
+  }
+</style>
