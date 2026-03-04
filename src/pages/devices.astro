@@ -134,41 +134,66 @@ const brands = Object.keys(devices);
       currentTarget = target;
       tooltipText.textContent = text;
       
-      const rect = target.getBoundingClientRect();
-      const tooltipRect = globalTooltip.getBoundingClientRect();
-      
-      // Show first to get dimensions
+      // Reset styles
+      globalTooltip.style.top = '0';
+      globalTooltip.style.left = '0';
       globalTooltip.style.visibility = 'hidden';
       globalTooltip.style.display = 'block';
       
-      const tooltipHeight = globalTooltip.offsetHeight;
+      const rect = target.getBoundingClientRect();
       const tooltipWidth = globalTooltip.offsetWidth;
+      const tooltipHeight = globalTooltip.offsetHeight;
       
-      // Position above the element
-      let top = rect.top - tooltipHeight - 12;
+      const viewportWidth = window.innerWidth;
+      const viewportHeight = window.innerHeight;
+      const padding = 10;
+      
+      // Calculate horizontal position - center on target
       let left = rect.left + (rect.width / 2) - (tooltipWidth / 2);
       
-      // Keep within viewport
-      if (left < 10) left = 10;
-      if (left + tooltipWidth > window.innerWidth - 10) {
-        left = window.innerWidth - tooltipWidth - 10;
+      // Clamp to viewport bounds
+      if (left < padding) {
+        left = padding;
+      } else if (left + tooltipWidth > viewportWidth - padding) {
+        left = viewportWidth - tooltipWidth - padding;
       }
-      if (top < 10) {
-        // Show below if no space above
+      
+      // Calculate vertical position - prefer above
+      let top;
+      let showAbove = true;
+      
+      if (rect.top - tooltipHeight - 12 >= padding) {
+        // Show above
+        top = rect.top - tooltipHeight - 12;
+        showAbove = true;
+      } else if (rect.bottom + tooltipHeight + 12 <= viewportHeight - padding) {
+        // Show below
         top = rect.bottom + 12;
+        showAbove = false;
+      } else {
+        // Not enough space, show above anyway but clamp
+        top = Math.max(padding, rect.top - tooltipHeight - 12);
+        showAbove = true;
+      }
+      
+      // Position arrow
+      if (showAbove) {
+        tooltipArrow.style.top = 'auto';
+        tooltipArrow.style.bottom = '-6px';
+        tooltipArrow.style.transform = 'rotate(45deg)';
+      } else {
         tooltipArrow.style.top = '-6px';
         tooltipArrow.style.bottom = 'auto';
         tooltipArrow.style.transform = 'rotate(-135deg)';
-      } else {
-        tooltipArrow.style.bottom = '-6px';
-        tooltipArrow.style.top = 'auto';
-        tooltipArrow.style.transform = 'rotate(45deg)';
       }
       
-      // Position arrow horizontally
-      const arrowLeft = rect.left + (rect.width / 2) - left - 6;
-      tooltipArrow.style.left = Math.max(16, Math.min(arrowLeft, tooltipWidth - 28)) + 'px';
+      // Calculate arrow horizontal position
+      const targetCenterX = rect.left + (rect.width / 2);
+      let arrowLeft = targetCenterX - left - 6;
+      arrowLeft = Math.max(16, Math.min(arrowLeft, tooltipWidth - 28));
+      tooltipArrow.style.left = arrowLeft + 'px';
       
+      // Apply position
       globalTooltip.style.top = top + 'px';
       globalTooltip.style.left = left + 'px';
       globalTooltip.style.visibility = 'visible';
@@ -177,12 +202,17 @@ const brands = Object.keys(devices);
     
     function hideTooltip() {
       globalTooltip.classList.remove('show');
+      globalTooltip.style.display = 'none';
       currentTarget = null;
     }
     
     function initTooltips() {
       document.querySelectorAll('.description-text').forEach(desc => {
-        desc.addEventListener('click', function(e) {
+        // Remove existing listeners
+        const newDesc = desc.cloneNode(true);
+        desc.parentNode.replaceChild(newDesc, desc);
+        
+        newDesc.addEventListener('click', function(e) {
           e.preventDefault();
           e.stopPropagation();
           
@@ -212,7 +242,7 @@ const brands = Object.keys(devices);
       }
     });
     
-    // Reposition on scroll/resize
+    // Hide on scroll/resize
     window.addEventListener('scroll', hideTooltip, true);
     window.addEventListener('resize', hideTooltip);
     
@@ -307,7 +337,8 @@ const brands = Object.keys(devices);
       position: fixed;
       z-index: 9999;
       display: none;
-      max-width: 320px;
+      width: 280px;
+      max-width: calc(100vw - 20px);
       pointer-events: auto;
     }
     
@@ -340,6 +371,13 @@ const brands = Object.keys(devices);
       color: var(--text-75);
       max-height: 200px;
       overflow-y: auto;
+      word-wrap: break-word;
+      overflow-wrap: break-word;
+    }
+    
+    .global-tooltip-content p {
+      margin: 0;
+      white-space: pre-wrap;
     }
     
     .global-tooltip-close {
@@ -357,6 +395,7 @@ const brands = Object.keys(devices);
       cursor: pointer;
       color: var(--text-50);
       transition: background 0.15s, color 0.15s;
+      flex-shrink: 0;
     }
     
     .global-tooltip-close:hover {
@@ -371,7 +410,6 @@ const brands = Object.keys(devices);
       background: var(--card-bg);
       border-right: 1px solid var(--line-divider);
       border-bottom: 1px solid var(--line-divider);
-      transform: rotate(45deg);
     }
 
     /* Filter styles */
@@ -484,7 +522,7 @@ const brands = Object.keys(devices);
       }
       
       .global-tooltip {
-        max-width: calc(100vw - 20px);
+        width: calc(100vw - 20px);
       }
     }
 
