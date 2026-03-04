@@ -144,8 +144,15 @@ if (siteConfig.font) {
 		fonts.push(cjkFont.includes(" ") ? `"${cjkFont}"` : cjkFont);
 	}
 	// 添加系统字体作为最终回退
+	// On Windows NT system, use Microsoft fonts as prior choice
 	fonts.push(
 		"LXGWWenKai",
+		"Microsoft JhengHei",
+		"微軟正黑體",
+		"Microsoft YaHei",
+		"微軟雅黑",
+		"微软雅黑",
+		"sans-serif",
 		"system-ui",
 		"-apple-system",
 		"BlinkMacSystemFont",
@@ -156,7 +163,6 @@ if (siteConfig.font) {
 		"Cantarell",
 		"'Open Sans'",
 		"'Helvetica Neue'",
-		"sans-serif",
 	);
 	// 组合成完整的 font-family 字符串
 	bodyFontFamily = fonts.join(", ");
