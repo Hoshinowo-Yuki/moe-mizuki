@@ -84,7 +84,7 @@ if (isEncrypted) {
 }
 
 dayjs.extend(utc);
-const lastModified = dayjs(entry.data.updated || entry.data.published)
+const lastModified = dayjs(remarkPluginFrontmatter.lastModified || entry.data.updated || entry.data.published)
 	.utc()
 	.format("YYYY-MM-DDTHH:mm:ss");
 

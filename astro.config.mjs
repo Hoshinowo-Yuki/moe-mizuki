@@ -28,6 +28,8 @@ import { remarkContent } from "./src/plugins/remark-content.mjs";
 import { rehypeImageWidth } from "./src/plugins/rehype-image-width.mjs";
 import rehypeExternalLinks from "rehype-external-links";
 import { remarkFixGithubAdmonitions } from "./src/plugins/remark-fix-github-admonitions.js";
+import { remarkModifiedTime } from "./src/plugins/remark-modified-time.mjs";
+
 
 // https://astro.build/config
 export default defineConfig({
@@ -126,6 +128,7 @@ export default defineConfig({
 			remarkSectionize,
 			parseDirectiveNode,
 			remarkMermaid,
+			remarkModifiedTime,
 		],
 		rehypePlugins: [
 			rehypeKatex,
