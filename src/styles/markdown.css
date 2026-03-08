@@ -200,7 +200,7 @@
 }
 
 /* Keyboard key styling */
-keyboard {
+kbd {
   display: inline-block;
   padding: 0.15rem 0.4rem;
   font-family: inherit;
