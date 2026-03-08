@@ -339,6 +339,10 @@ enum I18nKey {
 	// 布局切换按钮
 	switchToGridMode = "switchToGridMode",
 	switchToListMode = "switchToListMode",
+
+	// DevTools detection
+	devtoolsMessage = 'devtoolsMessage',
+    devtoolsLinkText = 'devtoolsLinkText',
 }
 
 export default I18nKey;

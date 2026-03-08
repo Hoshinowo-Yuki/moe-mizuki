@@ -364,4 +364,8 @@ export const ja: Translation = {
 	// レイアウト切り替えボタン
 	[Key.switchToGridMode]: "グリッド表示に切り替え",
 	[Key.switchToListMode]: "リスト表示に切り替え",
+
+	// DevTools検出
+	[Key.devtoolsMessage]: '開発者モードが開かれています。GPLライセンスを遵守してください。',
+	[Key.devtoolsLinkText]: 'ブログ声明を見る',
 };
