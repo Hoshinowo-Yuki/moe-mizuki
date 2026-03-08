@@ -330,6 +330,11 @@ export const navBarConfig: NavBarConfig = {
 					url: "/friends/",
 					icon: "material-symbols:group",
 				},
+				{
+					name: "License",
+					url: "/license/",
+					icon: "mdi:license",
+				}
 			],
 		},
 		{

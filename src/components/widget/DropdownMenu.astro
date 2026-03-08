@@ -5,6 +5,7 @@ import I18nKey from "../../i18n/i18nKey";
 import { i18n } from "../../i18n/translation";
 import type { NavBarLink } from "../../types/config";
 import { url } from "../../utils/url-utils";
+import License from "@components/misc/License.astro";
 
 interface Props {
 	link: NavBarLink;
@@ -27,6 +28,7 @@ const navTitleMap: Record<string, I18nKey> = {
 	Timeline: I18nKey.timeline,
 	Friends: I18nKey.friends,
 	"Useful Links": I18nKey.usefulLinks,
+	License: I18nKey.license,
 };
 
 const getLocalizedName = (name: string): string => {
