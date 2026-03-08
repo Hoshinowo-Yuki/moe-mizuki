@@ -350,4 +350,8 @@ export const zh_TW: Translation = {
 	// 布局切換按鈕
 	[Key.switchToGridMode]: "切換到網格模式",
 	[Key.switchToListMode]: "切換到列表模式",
+
+	// DevTools檢測
+	[Key.devtoolsMessage]: '開發者模式已開啟，請遵守GPL授權條款。',
+	[Key.devtoolsLinkText]: '查看授權聲明',
 };

@@ -1365,25 +1365,12 @@ function disableAnimation() {
 	import "../scripts/theme-optimizer.js";
 </script>
 
-
 <!-- Dynamic title and favicon on tab visibility change -->
 <script>
-	const originalTitle = document.title;
-	const favicons = document.querySelectorAll<HTMLLinkElement>('link[rel="icon"]');
-	const originalHrefs = [...favicons].map(link => link.href);
-	let timeoutId: number | null = null;
-	
-	document.addEventListener('visibilitychange', () => {
-	  if (document.hidden) {
-	    if (timeoutId) clearTimeout(timeoutId);
-	    document.title = '(つ﹏⊂) 你個嘢壞咗呀...';
-	    favicons.forEach(link => link.href = '/favicon/failure.ico');
-	  } else {
-	    document.title = '(●´3｀●) 復活成功';
-	    favicons.forEach((link, i) => link.href = originalHrefs[i]);
-	    timeoutId = window.setTimeout(() => {
-	      document.title = originalTitle;
-	    }, 1500);
-	  }
-	});
+    import "../scripts/tab-visibility.js";
+</script>
+
+<!-- DevTools detection and warning banner -->
+<script>
+	import "../scripts/devtools-detection.js";
 </script>
