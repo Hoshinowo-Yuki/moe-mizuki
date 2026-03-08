@@ -10,7 +10,7 @@ const config = {
     linkText: i18n(I18nKey.devtoolsLinkText)
 };
 
-function createBanner() {
+function createBanner(): void {
     if (document.getElementById('dev-banner')) return;
 
     const style = document.createElement('style');
@@ -121,36 +121,47 @@ function createBanner() {
     });
 }
 
-function detectByWindowSize(): boolean {
-    const widthThreshold = window.outerWidth - window.innerWidth > 160;
-    const heightThreshold = window.outerHeight - window.innerHeight > 160;
-    return widthThreshold || heightThreshold;
-}
-
-function detectByConsole(): boolean {
-    let isOpen = false;
-    const element = new Image();
-    Object.defineProperty(element, 'id', {
-        get: function() {
-            isOpen = true;
-        }
-    });
-    console.log(element);
-    console.clear();
-    return isOpen;
-}
-
 let devtoolsOpen = false;
 
-function checkDevTools() {
-    const isOpen = detectByWindowSize() || detectByConsole();
+function detectDevTools(): boolean {
+    // Method 1: Window size detection
+    const widthThreshold = window.outerWidth - window.innerWidth > 160;
+    const heightThreshold = window.outerHeight - window.innerHeight > 160;
     
-    if (isOpen && !devtoolsOpen) {
+    if (widthThreshold || heightThreshold) {
+        return true;
+    }
+    
+    // Method 2: Debugger timing detection
+    const before = performance.now();
+    (function() { debugger; })();
+    const after = performance.now();
+    
+    if (after - before > 100) {
+        return true;
+    }
+    
+    return false;
+}
+
+function checkDevTools(): void {
+    if (devtoolsOpen) return;
+    
+    if (detectDevTools()) {
         devtoolsOpen = true;
         createBanner();
     }
 }
 
-checkDevTools();
+// Check periodically
 setInterval(checkDevTools, 1000);
+
+// Check on resize
 window.addEventListener('resize', checkDevTools);
+
+// Initial check
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', checkDevTools);
+} else {
+    checkDevTools();
+}
