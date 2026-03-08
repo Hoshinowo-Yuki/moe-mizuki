@@ -361,4 +361,8 @@ export const en: Translation = {
 	// Layout Switch Button
 	[Key.switchToGridMode]: "Switch to Grid Mode",
 	[Key.switchToListMode]: "Switch to List Mode",
+
+	// DevTools detection
+	[Key.devtoolsMessage]: 'Developer tools are open. Please adhere to the GPL license.',
+	[Key.devtoolsLinkText]: 'View License',
 };
