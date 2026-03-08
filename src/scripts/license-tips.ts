@@ -8,7 +8,7 @@ const config = {
     linkHref: '/license',
     message: i18n(I18nKey.devtoolsMessage),
     linkText: i18n(I18nKey.devtoolsLinkText),
-    // copyMessage: i18n(I18nKey.copyMessage)
+    //copyMessage: i18n(I18nKey.copyMessage)
 };
 
 function createBanner(message: string): void {
@@ -48,13 +48,13 @@ function createBanner(message: string): void {
                 position: fixed;
                 top: 20px;
                 right: 20px;
-                background: rgba(255, 245, 245, 0.7);
+                background: oklch(from var(--primary) 95% 0.05 h / 0.8);
                 backdrop-filter: blur(12px);
                 -webkit-backdrop-filter: blur(12px);
-                color: #5a3a3a;
+                color: var(--text-color, oklch(0.3 0.02 0));
                 padding: 15px 20px;
                 border-radius: 12px;
-                border: 1px solid rgba(90, 58, 58, 0.2);
+                border: 1px solid oklch(from var(--primary) 70% 0.1 h / 0.3);
                 z-index: 99999;
                 font-size: 14px;
                 box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
@@ -71,10 +71,11 @@ function createBanner(message: string): void {
             }
             
             #dev-banner a {
-                color: #2a6a8a;
+                color: var(--primary);
                 text-decoration: none;
                 display: block;
                 margin-top: 8px;
+                font-weight: 500;
             }
             
             #dev-banner a:hover {
@@ -87,10 +88,11 @@ function createBanner(message: string): void {
                 right: 10px;
                 background: none;
                 border: none;
-                color: #5a3a3a;
+                color: var(--text-color, oklch(0.3 0.02 0));
                 font-size: 18px;
                 cursor: pointer;
                 opacity: 0.7;
+                transition: opacity 0.2s ease;
             }
             
             #dev-banner-close:hover {
@@ -98,18 +100,14 @@ function createBanner(message: string): void {
             }
             
             html.dark #dev-banner {
-                background: rgba(42, 26, 26, 0.7);
-                color: #d4a0a0;
-                border: 1px solid rgba(212, 160, 160, 0.2);
+                background: oklch(from var(--primary) 20% 0.05 h / 0.8);
+                color: var(--text-color, oklch(0.9 0.02 0));
+                border: 1px solid oklch(from var(--primary) 40% 0.1 h / 0.3);
                 box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
             }
             
-            html.dark #dev-banner a {
-                color: #7eb8da;
-            }
-            
             html.dark #dev-banner-close {
-                color: #d4a0a0;
+                color: var(--text-color, oklch(0.9 0.02 0));
             }
         `;
         document.head.appendChild(style);
@@ -180,8 +178,8 @@ document.addEventListener('contextmenu', function(event: MouseEvent) {
 
 // Copy detection
 document.addEventListener('copy', function() {
-    // Optionally show a message when user copies content
-    // Uncomment below if you want to show banner on copy
+    // We don't need this message for now
     // createBanner(config.copyMessage);
 });
+
 
