@@ -48,13 +48,13 @@ function createBanner(message: string): void {
                 position: fixed;
                 top: 20px;
                 right: 20px;
-                background: oklch(from var(--card-bg) 95% 0.05 h / 0.8);
+                background: var(--card-bg);
                 backdrop-filter: blur(12px);
                 -webkit-backdrop-filter: blur(12px);
-                color: var(--text-color, oklch(0.3 0.02 0));
+                color: var(--text-color);
                 padding: 15px 20px;
                 border-radius: 12px;
-                border: 1px solid oklch(from var(--card-bg) 70% 0.1 h / 0.3);
+                border: 1px solid var(--line-divider);
                 z-index: 99999;
                 font-size: 14px;
                 box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
@@ -88,7 +88,7 @@ function createBanner(message: string): void {
                 right: 10px;
                 background: none;
                 border: none;
-                color: var(--text-color, oklch(0.3 0.02 0));
+                color: var(--text-color);
                 font-size: 18px;
                 cursor: pointer;
                 opacity: 0.7;
@@ -100,14 +100,7 @@ function createBanner(message: string): void {
             }
             
             html.dark #dev-banner {
-                background: oklch(from var(--primary) 20% 0.05 h / 0.8);
-                color: var(--text-color, oklch(0.9 0.02 0));
-                border: 1px solid oklch(from var(--primary) 40% 0.1 h / 0.3);
                 box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-            }
-            
-            html.dark #dev-banner-close {
-                color: var(--text-color, oklch(0.9 0.02 0));
             }
         `;
         document.head.appendChild(style);
@@ -181,5 +174,3 @@ document.addEventListener('copy', function() {
     // We don't need this message for now
     // createBanner(config.copyMessage);
 });
-
-
