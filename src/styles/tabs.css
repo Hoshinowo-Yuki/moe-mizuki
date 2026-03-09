@@ -1,101 +1,64 @@
 /* Tabs Container */
 .tabs-container {
   margin: 1.5rem 0;
-  border-radius: var(--radius-large, 12px);
+  border-radius: 0.75rem;
   overflow: hidden;
-  background: var(--card-bg, #fff);
-  border: 1px solid var(--line-divider, rgba(0, 0, 0, 0.1));
+  background: var(--license-block-bg);
 }
 
 /* Hide radio buttons */
-.tabs-container .tab-radio {
+.tab-radio {
   display: none;
 }
 
 /* Tabs Header */
 .tabs-header {
   display: flex;
-  background: var(--tab-header-bg, #2d2d2d);
-  border-bottom: 1px solid var(--line-divider, rgba(0, 0, 0, 0.1));
-  overflow-x: auto;
-  scrollbar-width: none;
+  gap: 0;
+  border-bottom: 1px solid oklch(var(--p) / 0.2);
 }
 
-.tabs-header::-webkit-scrollbar {
-  display: none;
-}
-
-/* Tab Button */
+/* Tab Buttons */
 .tab-button {
   padding: 0.75rem 1.25rem;
   cursor: pointer;
-  color: var(--tab-text, rgba(255, 255, 255, 0.7));
-  font-size: 0.95rem;
   font-weight: 500;
-  white-space: nowrap;
-  transition: all 0.2s ease;
+  color: oklch(var(--bc) / 0.6);
   border-bottom: 2px solid transparent;
-  user-select: none;
+  transition: all 0.2s ease;
+  margin-bottom: -1px;
 }
 
 .tab-button:hover {
-  color: var(--tab-text-hover, rgba(255, 255, 255, 0.9));
-  background: var(--tab-hover-bg, rgba(255, 255, 255, 0.05));
+  color: oklch(var(--bc) / 0.9);
+  background: oklch(var(--p) / 0.05);
 }
 
 /* Active Tab */
 .tab-radio:checked + .tab-button {
-  color: var(--tab-text-active, #fff);
-  border-bottom-color: var(--primary, #ff6b6b);
-  background: var(--tab-active-bg, rgba(255, 255, 255, 0.1));
+  color: oklch(var(--p));
+  border-bottom-color: oklch(var(--p));
+  font-weight: 600;
 }
 
 /* Tab Content */
 .tabs-body {
-  position: relative;
+  padding: 1rem 1.25rem;
 }
 
 .tab-content {
   display: none;
-  padding: 1.25rem;
-  animation: fadeIn 0.3s ease;
 }
 
 .tab-content-active {
   display: block;
 }
 
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(5px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* Tab content typography */
+/* Fix nested content margins */
 .tab-content > *:first-child {
   margin-top: 0;
 }
 
 .tab-content > *:last-child {
   margin-bottom: 0;
-}
-
-/* Code blocks inside tabs */
-.tab-content pre {
-  margin: 1rem 0;
-  border-radius: var(--radius-large, 8px);
-}
-
-/* Dark mode adjustments */
-:root.dark .tabs-container {
-  border-color: rgba(255, 255, 255, 0.1);
-}
-
-:root.dark .tabs-header {
-  background: #1a1a1a;
 }
