@@ -30,6 +30,7 @@ import rehypeExternalLinks from "rehype-external-links";
 import { remarkFixGithubAdmonitions } from "./src/plugins/remark-fix-github-admonitions.js";
 import { KeyboardComponent } from "./src/plugins/rehype-component-keyboard.js";
 import remarkTabs from './src/plugins/remark-tabs.js';
+import remarkHighlight from "./src/plugins/remark-highlight.js";
 
 
 // https://astro.build/config
@@ -130,6 +131,7 @@ export default defineConfig({
 			parseDirectiveNode,
 			remarkMermaid,
 			remarkTabs,
+			remarkHighlight,
 		],
 		rehypePlugins: [
 			rehypeKatex,
