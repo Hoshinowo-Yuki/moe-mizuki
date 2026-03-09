@@ -32,6 +32,7 @@ import { KeyboardComponent } from "./src/plugins/rehype-component-keyboard.js";
 import remarkTabs from './src/plugins/remark-tabs.js';
 import remarkHighlight from "./src/plugins/remark-highlight.js";
 import remarkColoredText from "./src/plugins/remark-colored-text.js";
+import remarkSupersub from "./src/plugins/remark-supersub.js";
 
 
 // https://astro.build/config
@@ -134,6 +135,7 @@ export default defineConfig({
 			remarkTabs,  // Our custom plugin starts here
 			remarkHighlight,
 			remarkColoredText,
+			remarkSupersub,
 		],
 		rehypePlugins: [
 			rehypeKatex,
