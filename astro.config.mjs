@@ -29,6 +29,8 @@ import { rehypeImageWidth } from "./src/plugins/rehype-image-width.mjs";
 import rehypeExternalLinks from "rehype-external-links";
 import { remarkFixGithubAdmonitions } from "./src/plugins/remark-fix-github-admonitions.js";
 import { KeyboardComponent } from "./src/plugins/rehype-component-keyboard.js";
+import remarkTabs from './src/plugins/remark-tabs.js';
+
 
 // https://astro.build/config
 export default defineConfig({
@@ -127,6 +129,7 @@ export default defineConfig({
 			remarkSectionize,
 			parseDirectiveNode,
 			remarkMermaid,
+			remarkTabs,
 		],
 		rehypePlugins: [
 			rehypeKatex,
