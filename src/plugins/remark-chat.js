@@ -8,90 +8,50 @@ export function remarkChat() {
         let currentMessage = null;
 
         for (const child of node.children) {
-          // Handle blockquote nodes
+          // Handle blockquote - attach to current message
           if (child.type === 'blockquote' && currentMessage) {
-            const quoteText = child.children
-              ?.flatMap(p => p.children || [])
-              ?.filter(c => c.type === 'text')
-              ?.map(c => c.value)
-              ?.join('\n') || '';
+            const quoteText = extractText(child);
             if (quoteText) {
-              currentMessage.content.push({ type: 'quote', value: quoteText });
+              currentMessage.content.unshift({ type: 'quote', value: quoteText });
             }
             continue;
           }
 
-          if (child.type === 'paragraph' && child.children?.length > 0) {
-            const firstChild = child.children[0];
+          // Handle paragraph
+          if (child.type === 'paragraph') {
+            const text = extractText(child);
+            if (!text) continue;
+
+            const headerMatch = text.match(/^\[([^\]|]+)\|([^\]|]+)(?:\|(\w+))?\]/);
             
-            // Check if this paragraph starts with a header [name|date|position]
-            if (firstChild.type === 'text') {
-              const text = firstChild.value;
-              const headerMatch = text.match(/^\[([^\]|]+)\|([^\]|]+)(?:\|(\w+))?\]/);
-              
-              if (headerMatch) {
-                if (currentMessage) {
-                  messages.push(currentMessage);
-                }
-                
-                const [fullMatch, name, date, position] = headerMatch;
-                const remainingText = text.slice(fullMatch.length).trim();
-                
-                currentMessage = {
-                  name,
-                  date,
-                  position: position || 'left',
-                  content: []
-                };
-                
-                if (remainingText) {
-                  // Check if remaining text starts with > (inline quote)
-                  if (remainingText.startsWith('> ')) {
-                    currentMessage.content.push({ type: 'quote', value: remainingText.slice(2) });
-                  } else {
-                    currentMessage.content.push({ type: 'text', value: remainingText });
-                  }
-                }
-                
-                // Handle remaining children in the same paragraph
-                for (let i = 1; i < child.children.length; i++) {
-                  const c = child.children[i];
-                  if (c.type === 'text' && c.value.trim()) {
-                    currentMessage.content.push({ type: 'text', value: c.value.trim() });
-                  }
-                }
-              } else if (currentMessage) {
-                // Regular text line - check for > prefix
-                const lines = text.split('\n');
-                for (const line of lines) {
-                  const trimmedLine = line.trim();
-                  if (trimmedLine.startsWith('> ')) {
-                    currentMessage.content.push({ type: 'quote', value: trimmedLine.slice(2) });
-                  } else if (trimmedLine) {
-                    currentMessage.content.push({ type: 'text', value: trimmedLine });
-                  }
-                }
+            if (headerMatch) {
+              // Save previous message
+              if (currentMessage) {
+                messages.push(currentMessage);
               }
+              
+              const [fullMatch, name, date, position] = headerMatch;
+              const remainingText = text.slice(fullMatch.length).trim();
+              
+              currentMessage = {
+                name,
+                date,
+                position: position || 'left',
+                content: []
+              };
+              
+              if (remainingText) {
+                currentMessage.content.push({ type: 'text', value: remainingText });
+              }
+            } else if (currentMessage) {
+              // Regular content line
+              currentMessage.content.push({ type: 'text', value: text });
             }
           }
         }
         
         if (currentMessage) {
           messages.push(currentMessage);
-        }
-
-        // Merge consecutive quotes
-        for (const msg of messages) {
-          const mergedContent = [];
-          for (const item of msg.content) {
-            const last = mergedContent[mergedContent.length - 1];
-            if (item.type === 'quote' && last?.type === 'quote') {
-              last.value += '\n' + item.value;
-            } else {
-              mergedContent.push({ ...item });
-            }
-          }
-          msg.content = mergedContent;
         }
 
         // Generate HTML
@@ -111,7 +71,7 @@ ${messages.map(msg => {
         <span class="chat-date">${escapeHtml(msg.date)}</span>
       </div>
       <div class="chat-content">
-        ${contentHtml}
+        ${contentHtml || '<p></p>'}
       </div>
     </div>
   </div>`;
@@ -124,6 +84,15 @@ ${messages.map(msg => {
       }
     });
   };
+}
+
+function extractText(node) {
+  if (!node) return '';
+  if (node.type === 'text') return node.value;
+  if (node.children) {
+    return node.children.map(extractText).join('').trim();
+  }
+  return '';
 }
 
 function escapeHtml(text) {
