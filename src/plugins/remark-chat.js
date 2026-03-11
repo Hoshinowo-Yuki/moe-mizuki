@@ -1,9 +1,20 @@
 import { visit } from 'unist-util-visit';
 
+import { visit } from 'unist-util-visit';
+
+
+
 export function remarkChat() {
   return (tree) => {
     visit(tree, (node) => {
       if (node.type === 'containerDirective' && node.name === 'chat') {
+        
+                
+        // DEBUG: 看看 node.children 結構
+        console.log('=== CHAT DEBUG ===');
+        console.log(JSON.stringify(node.children, null, 2));
+        console.log('=== END DEBUG ===');
+        
         const messages = [];
         let currentMessage = null;
 
