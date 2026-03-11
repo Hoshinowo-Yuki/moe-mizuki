@@ -4,85 +4,83 @@ export function remarkChat() {
   return (tree) => {
     visit(tree, (node) => {
       if (node.type === 'containerDirective' && node.name === 'chat') {
-        
-                
-        // DEBUG: 看看 node.children 結構
-        console.log('=== CHAT DEBUG ===');
-        console.log(JSON.stringify(node.children, null, 2));
-        console.log('=== END DEBUG ===');
-        
         const messages = [];
         let currentMessage = null;
 
         for (const child of node.children) {
-          // Handle blockquote - attach to current message
           if (child.type === 'blockquote' && currentMessage) {
-            const quoteText = extractText(child);
-            if (quoteText) {
-              currentMessage.content.unshift({ type: 'quote', value: quoteText });
+            const blockText = extractText(child);
+            console.log('BLOCKQUOTE TEXT:', JSON.stringify(blockText));
+            const lines = blockText.split('\n');
+            console.log('BLOCKQUOTE LINES:', lines);
+            if (lines.length > 0) {
+              currentMessage.quote = lines[0];
+              if (lines.length > 1) {
+                currentMessage.content.push(...lines.slice(1).filter(l => l.trim()));
+              }
             }
             continue;
           }
 
-          // Handle paragraph
           if (child.type === 'paragraph') {
             const text = extractText(child);
             if (!text) continue;
 
-            const headerMatch = text.match(/^\[([^\]|]+)\|([^\]|]+)(?:\|(\w+))?\]/);
-            
+            const lines = text.split('\n');
+            const firstLine = lines[0];
+            const headerMatch = firstLine.match(/^\[([^\]|]+)\|([^\]|]+)(?:\|(\w+))?\]$/);
+
             if (headerMatch) {
-              // Save previous message
               if (currentMessage) {
                 messages.push(currentMessage);
               }
-              
-              const [fullMatch, name, date, position] = headerMatch;
-              const remainingText = text.slice(fullMatch.length).trim();
-              
+
+              const [, name, date, position] = headerMatch;
+
               currentMessage = {
                 name,
                 date,
                 position: position || 'left',
+                quote: null,
                 content: []
               };
-              
-              if (remainingText) {
-                currentMessage.content.push({ type: 'text', value: remainingText });
+
+              if (lines.length > 1) {
+                currentMessage.content.push(...lines.slice(1).filter(l => l.trim()));
               }
             } else if (currentMessage) {
-              // Regular content line
-              currentMessage.content.push({ type: 'text', value: text });
+              currentMessage.content.push(...lines.filter(l => l.trim()));
             }
           }
         }
-        
+
         if (currentMessage) {
           messages.push(currentMessage);
         }
 
-        // Generate HTML
+        console.log('FINAL MESSAGES:', JSON.stringify(messages, null, 2));
+
         const html = `<div class="chat-container">
 ${messages.map(msg => {
-          const contentHtml = msg.content.map(c => {
-            if (c.type === 'quote') {
-              return `<blockquote>${escapeHtml(c.value)}</blockquote>`;
-            }
-            return `<p>${escapeHtml(c.value)}</p>`;
-          }).join('\n        ');
-
-          return `  <div class="chat-message chat-${msg.position}">
+  let contentHtml = '';
+  if (msg.quote) {
+    contentHtml += `<blockquote>${escapeHtml(msg.quote)}</blockquote>\n        `;
+  }
+  if (msg.content.length > 0) {
+    contentHtml += msg.content.map(c => `<p>${escapeHtml(c)}</p>`).join('\n        ');
+  }
+  return `  <div class="chat-message chat-${msg.position}">
     <div class="chat-bubble">
       <div class="chat-header">
         <span class="chat-name">${escapeHtml(msg.name)}</span>
         <span class="chat-date">${escapeHtml(msg.date)}</span>
       </div>
       <div class="chat-content">
-        ${contentHtml || '<p></p>'}
+        ${contentHtml || ''}
       </div>
     </div>
   </div>`;
-        }).join('\n')}
+}).join('\n')}
 </div>`;
 
         node.type = 'html';
@@ -97,7 +95,7 @@ function extractText(node) {
   if (!node) return '';
   if (node.type === 'text') return node.value;
   if (node.children) {
-    return node.children.map(extractText).join('').trim();
+    return node.children.map(extractText).join('');
   }
   return '';
 }
@@ -107,8 +105,7 @@ function escapeHtml(text) {
     .replace(/&/g, '&amp;')
     .replace(/</g, '&lt;')
     .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
-    .replace(/\n/g, '<br>');
+    .replace(/"/g, '&quot;');
 }
 
 export default remarkChat;
