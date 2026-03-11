@@ -2,6 +2,11 @@ import { visit } from 'unist-util-visit';
 
 export function remarkChat() {
   return (tree) => {
+    console.log('=== REMARK-CHAT TRANSFORM START ===');
+    visit(tree, (node, index, parent) => {
+      console.log('Visiting node type:', node.type, node.name || '');
+      if (node.type === 'containerDirective' && node.name === 'chat') {
+        console.log('=== FOUND CHAT ===');
     visit(tree, (node, index, parent) => {
       if (node.type === 'containerDirective' && node.name === 'chat') {
         const messages = [];
