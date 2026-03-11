@@ -29,13 +29,12 @@ import { rehypeImageWidth } from "./src/plugins/rehype-image-width.mjs";
 import rehypeExternalLinks from "rehype-external-links";
 import { remarkFixGithubAdmonitions } from "./src/plugins/remark-fix-github-admonitions.js";
 import { KeyboardComponent } from "./src/plugins/rehype-component-keyboard.js";
-import remarkTabs from './src/plugins/remark-tabs.js';
+import remarkTabs from "./src/plugins/remark-tabs.js";
 import remarkHighlight from "./src/plugins/remark-highlight.js";
 import remarkColoredText from "./src/plugins/remark-colored-text.js";
 import remarkSupersub from "./src/plugins/remark-supersub.js";
 import remarkFurigana from "./src/plugins/remark-furigana.js";
 import remarkChat from "./src/plugins/remark-chat.js";
-
 
 // https://astro.build/config
 export default defineConfig({
@@ -43,7 +42,7 @@ export default defineConfig({
 	base: "/",
 	trailingSlash: "always",
 
-    output: "static",
+	output: "static",
 
 	integrations: [
 		umami({
@@ -132,14 +131,14 @@ export default defineConfig({
 			remarkFixGithubAdmonitions,
 			remarkDirective,
 			remarkSectionize,
+			remarkChat,
 			parseDirectiveNode,
 			remarkMermaid,
-			remarkTabs,  // Our custom plugin starts here
+			remarkTabs, // Our custom plugin starts here
 			remarkHighlight,
 			remarkColoredText,
 			remarkSupersub,
 			remarkFurigana,
-			remarkChat,
 		],
 		rehypePlugins: [
 			rehypeKatex,
@@ -190,7 +189,7 @@ export default defineConfig({
 		],
 	},
 	vite: {
-		plugins: [tailwindcss()],		
+		plugins: [tailwindcss()],
 		build: {
 			// 静态资源处理优化，防止小图片转 base64 导致 HTML 体积过大（可选，根据需要调整）
 			assetsInlineLimit: 4096,
@@ -213,3 +212,4 @@ export default defineConfig({
 		},
 	},
 });
+
