@@ -5,8 +5,6 @@
   gap: 12px;
   margin: 1.5rem 0;
   padding: 1rem;
-  background: var(--chat-container-bg, rgba(0, 0, 0, 0.02));
-  border-radius: 12px;
 }
 
 /* Chat Message */
@@ -46,7 +44,7 @@
 .chat-name {
   font-size: 14px;
   font-weight: 600;
-  color: var(--chat-name-color, #333);
+  color: var(--primary);
 }
 
 .chat-date {
@@ -96,14 +94,6 @@
 }
 
 /* Dark Mode */
-:root.dark .chat-container {
-  background: rgba(255, 255, 255, 0.03);
-}
-
-:root.dark .chat-name {
-  color: var(--chat-name-color-dark, #eee);
-}
-
 :root.dark .chat-date {
   color: var(--chat-date-color-dark, #888);
 }
