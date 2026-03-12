@@ -94,8 +94,8 @@ export function rehypeChat(properties, children) {
     }, [
       h("div", { class: "chat-bubble" }, [
         h("div", { class: "chat-header" }, [
-          h("span", { class: "chat-name" }, msg.username),
-          h("span", { class: "chat-date" }, msg.timestamp)
+          h("span", { class: "chat-username" }, msg.username),
+          h("span", { class: "chat-timestamp" }, msg.timestamp)
         ]),
         h("div", { class: "chat-content" }, [
           ...(msg.replyTo ? [
