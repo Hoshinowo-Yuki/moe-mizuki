@@ -48,7 +48,6 @@
 
 .chat-username {
   font-size: 14px;
-  font-weight: 600;
   color: var(--chat-username-color, #333);
 }
 
