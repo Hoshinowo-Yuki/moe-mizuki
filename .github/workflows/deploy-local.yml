@@ -48,6 +48,7 @@ jobs:
         if: success()
         run: |
           rm -rf dist_backup
+          sudo docker compose restart
           echo "Build succeeded, backup removed."
 
       - name: Restore backup on failure
@@ -62,3 +63,5 @@ jobs:
           exit 1
 
       # Our Docker Container will automatically serve the lastest files in real time.
+
+
