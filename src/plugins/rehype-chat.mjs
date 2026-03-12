@@ -1,9 +1,18 @@
-import { h } from 'hastscript';
+import { h } from "hastscript";
 
-export function rehypeChat(element, metadata) {
-  const children = element.children || [];
-  
-  // 提取所有文字內容
+/**
+ * Creates a chat component.
+ *
+ * @param {Object} properties - The properties of the component.
+ * @param {import('mdast').RootContent[]} children - The children elements of the component.
+ * @returns {import('mdast').Parent} The created chat component.
+ */
+export function rehypeChat(properties, children) {
+  if (!Array.isArray(children) || children.length === 0) {
+    return h("div", { class: "chat-container chat-empty" }, "No messages");
+  }
+
+  // 從 children 提取文字內容
   let textContent = '';
   const extractText = (nodes) => {
     for (const node of nodes) {
@@ -21,7 +30,7 @@ export function rehypeChat(element, metadata) {
   };
   extractText(children);
 
-  // 按段落分割（每個消息是一個段落）
+  // 按段落分割
   const paragraphs = textContent.split(/\n\n+/).filter(p => p.trim());
   const messages = [];
 
@@ -70,9 +79,7 @@ export function rehypeChat(element, metadata) {
   }
 
   if (messages.length === 0) {
-    return h('div', { class: 'chat-container' }, [
-      h('div', { class: 'chat-empty' }, 'No messages')
-    ]);
+    return h("div", { class: "chat-container chat-empty" }, "No messages");
   }
 
   return h('div', { class: 'chat-container' }, messages);
