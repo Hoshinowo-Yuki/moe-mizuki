@@ -25,8 +25,6 @@ export function parseDirectiveNode() {
         const hast = h(node.name, node.attributes);
         data.hName = hast.tagName;
         data.hProperties = hast.properties;
-
-        console.log("[parseDirectiveNode] name:", node.name, "| hName:", data.hName, "| type:", node.type);
       }
     });
   };
