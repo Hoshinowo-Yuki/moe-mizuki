@@ -105,6 +105,33 @@
   color: rgba(255, 255, 255, 0.9);
 }
 
+/* Hide blockquote pseudo-element in chat */
+.chat-content blockquote:before {
+  display: none !important;
+}
+
+/* Reply indicator with icon */
+.chat-reply-to {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.75em;
+  margin-bottom: 4px;
+  opacity: 0.7;
+}
+
+.chat-reply-to .iconify {
+  font-size: 0.9em;
+}
+
+.chat-left .chat-reply-to {
+  color: #666;
+}
+
+.chat-right .chat-reply-to {
+  color: rgba(255, 255, 255, 0.8);
+}
+
 /* Dark Mode */
 :root.dark .chat-username {
   color: var(--chat-username-color-dark, #eee);
