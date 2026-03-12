@@ -83,20 +83,25 @@
   margin-bottom: 0.5em;
 }
 
-/* Blockquote / Reply */
-.chat-content blockquote {
+/* Blockquote / Reply - Left side */
+.chat-left .chat-content blockquote {
   margin: 0 0 8px 0;
-  padding: 6px 10px;
-  border-radius: 6px;
+  padding: 8px 12px;
+  border-radius: 4px 12px 12px 12px;
   font-size: 0.875em;
-  border-left: 3px solid var(--chat-quote-border, rgba(0, 0, 0, 0.15));
-  background: var(--chat-quote-bg, rgba(0, 0, 0, 0.04));
-  color: var(--chat-quote-color, #666);
+  border: none;
+  background: rgba(0, 0, 0, 0.06);
+  color: #666;
 }
 
+/* Blockquote / Reply - Right side */
 .chat-right .chat-content blockquote {
-  border-left-color: rgba(255, 255, 255, 0.4);
-  background: rgba(255, 255, 255, 0.15);
+  margin: 0 0 8px 0;
+  padding: 8px 12px;
+  border-radius: 12px 4px 12px 12px;
+  font-size: 0.875em;
+  border: none;
+  background: rgba(255, 255, 255, 0.2);
   color: rgba(255, 255, 255, 0.9);
 }
 
@@ -113,8 +118,7 @@
   background: var(--chat-left-bg-dark, rgba(255, 255, 255, 0.08));
 }
 
-:root.dark .chat-content blockquote {
-  border-left-color: rgba(255, 255, 255, 0.2);
-  background: rgba(255, 255, 255, 0.05);
+:root.dark .chat-left .chat-content blockquote {
+  background: rgba(255, 255, 255, 0.06);
   color: #aaa;
 }

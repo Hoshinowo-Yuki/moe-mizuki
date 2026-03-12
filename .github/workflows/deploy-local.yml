@@ -46,7 +46,9 @@ jobs:
 
       - name: Cleanup backup on success
         if: success()
-        run: rm -rf dist_backup
+        run: |
+          rm -rf dist_backup
+          echo "Build succeeded, backup removed."
 
       - name: Restore backup on failure
         if: failure()
@@ -54,7 +56,9 @@ jobs:
           rm -rf dist
           if [ -d "dist_backup" ]; then
             mv dist_backup dist
-            echo "⚠️ Build failed, restored previous version"
+            echo "ERROR: pnpm build failed, usually this is due to a syntax error in the markdown files."
+            echo "For safety, the previous dist has been restored. Please check the build logs for details."
           fi
+          exit 1
 
       # Our Docker Container will automatically serve the lastest files in real time.
