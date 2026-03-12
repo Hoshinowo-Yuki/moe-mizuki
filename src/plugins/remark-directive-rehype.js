@@ -11,12 +11,6 @@ export function parseDirectiveNode() {
       ) {
         console.log("[parseDirectiveNode] name:", node.name, "| type:", node.type);
         
-        // 跳過 chat - 由 remarkChat 處理
-        if (node.name === "chat") {
-          console.log("[parseDirectiveNode] SKIPPING CHAT");
-          return;
-        }
-        
         const data = node.data || (node.data = {});
         node.attributes = node.attributes || {};
         
