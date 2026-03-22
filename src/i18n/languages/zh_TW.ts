@@ -354,4 +354,8 @@ export const zh_TW: Translation = {
 	// DevTools檢測
 	[Key.devtoolsMessage]: "開發者模式已開啟，請遵守GPL授權條款。",
 	[Key.devtoolsLinkText]: "查看授權聲明",
+
+	// Uptime and Update
+	[Key.uptime]: "上線時間檢查",
+	[Key.updata]: "更新日誌",
 };

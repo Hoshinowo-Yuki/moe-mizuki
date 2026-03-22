@@ -343,6 +343,10 @@ enum I18nKey {
 	// DevTools detection
 	devtoolsMessage = 'devtoolsMessage',
     devtoolsLinkText = 'devtoolsLinkText',
+
+	// Uptime and Update
+	uptime = "uptime",
+	updata = "updata",
 }
 
 export default I18nKey;
