@@ -354,8 +354,7 @@ export const navBarConfig: NavBarConfig = {
 				},
 				{
 					name: "Timeline",
-					u#
-(rl: "/timeline/",
+					url: "/timeline/",
 					icon: "material-symbols:timeline",
 				},
 				{
