@@ -352,4 +352,8 @@ export const zh_CN: Translation = {
 	// DevTools检测
 	[Key.devtoolsMessage]: '已打开开发者模式，请谨记GPL协议！',
 	[Key.devtoolsLinkText]: '查看博客声明',
+
+	// Uptime和Update
+	[Key.uptime]: "在线时间检查",
+	[Key.updata]: "更新日志",
 };

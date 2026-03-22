@@ -365,4 +365,8 @@ export const en: Translation = {
 	// DevTools detection
 	[Key.devtoolsMessage]: 'Developer tools are open. Please adhere to the GPL license.',
 	[Key.devtoolsLinkText]: 'View License',
+
+	// Uptime and Update
+	[Key.uptime]: "Uptime Check",
+	[Key.updata]: "Update Log",
 };
