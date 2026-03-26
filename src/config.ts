@@ -395,7 +395,7 @@ export const profileConfig: ProfileConfig = {
 		{
 			name: "GitHub",
 			icon: "fa7-brands:github",
-			url: "https://github.com/shirakamiNeko",
+			url: "https://github.com/Hoshinowo-Yuki",
 		},
 		{
 			name: "Discord",
