@@ -30,8 +30,13 @@ import { parseDirectiveNode } from "./src/plugins/remark-directive-rehype.js";
 import { remarkFixGithubAdmonitions } from "./src/plugins/remark-fix-github-admonitions.js";
 import { remarkMermaid } from "./src/plugins/remark-mermaid.js";
 
+import { KeyboardComponent } from "./src/plugins/rehype-component-keyboard.js";
+import { rehypeChat } from "./src/plugins/rehype-chat.mjs";
 import remarkTabs from "./src/plugins/remark-tabs.js";
-
+import remarkHighlight from "./src/plugins/remark-highlight.js";
+import remarkColoredText from "./src/plugins/remark-colored-text.js";
+import remarkSupersub from "./src/plugins/remark-supersub.js";
+import remarkFurigana from "./src/plugins/remark-furigana.js";
 
 // https://astro.build/config
 export default defineConfig({
@@ -133,6 +138,10 @@ export default defineConfig({
 			parseDirectiveNode,
 			remarkMermaid,
 			remarkTabs,
+			remarkHighlight,
+			remarkColoredText,
+			remarkSupersub,
+			remarkFurigana,
 		],
 		rehypePlugins: [
 			rehypeKatex,
@@ -150,6 +159,8 @@ export default defineConfig({
 				rehypeComponents,
 				{
 					components: {
+						chat: rehypeChat,
+						keyboard: KeyboardComponent,
 						github: GithubCardComponent,
 						note: (x, y) => AdmonitionComponent(x, y, "note"),
 						tip: (x, y) => AdmonitionComponent(x, y, "tip"),
