@@ -1,0 +1,53 @@
+---
+import { getEntry, render } from "astro:content";
+import Markdown from "@components/misc/Markdown.astro";
+import I18nKey from "../i18n/i18nKey";
+import { i18n } from "../i18n/translation";
+import { LastModified } from "@components/features/posts";
+import MainGridLayout from "../layouts/MainGridLayout.astro";
+import { siteConfig } from "../config";
+
+const licensePost = await getEntry("spec", "license");
+
+if (!licensePost) {
+	throw new Error("License page content not found");
+}
+
+const { Content } = await render(licensePost);
+const title = i18n(I18nKey.license);
+
+---
+<MainGridLayout title={title}>
+	<!-- 引入右側邊欄佈局管理器 -->
+    <script>
+        import('../scripts/right-sidebar-layout.js');
+    </script>
+    
+    <!-- 主要內容卡片 -->
+    <div class="flex w-full rounded-(--radius-large) overflow-hidden relative min-h-32 mb-4">
+        <div class="card-base z-10 px-9 py-6 relative w-full">
+            <!-- 頁面標題 -->
+            <div class="flex flex-col items-start justify-center mb-8">
+                <h1 class="text-4xl font-bold text-90 mb-2 relative
+                          before:w-1 before:h-8 before:rounded-md before:bg-(--primary)
+                          before:absolute before:top-1/2 before:-translate-y-1/2 before:-left-4">
+                    {title}
+                </h1>
+            </div>
+            
+            <!-- 從 MD 檔案讀取的內容 -->
+            <Markdown class="mt-2">
+                <Content />
+            </Markdown>
+        </div>
+    </div>
+
+    <!-- 最後修改時間卡片（獨立於內容卡片外） -->
+	{
+		siteConfig.showLastModified && (
+			<LastModified
+				updatedDate={licensePost.data.updated || licensePost.data.published || new Date()}
+			/>
+		)
+	}
+</MainGridLayout>
