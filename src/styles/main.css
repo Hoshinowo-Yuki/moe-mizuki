@@ -26,18 +26,10 @@
   --breakpoint-xl: 1920px;
 }
 
-/* 导入 ZenMaruGothic-Medium 字体 */
+/* 导入 HYTMR 字体 */
 @font-face {
-  font-family: "ZenMaruGothic-Medium";
-  src: url("/assets/font/ZenMaruGothic-Medium.ttf") format("truetype");
-  font-weight: 500;
-  font-display: swap;
-}
-
-/* 导入 萝莉体 第二版 字体 */
-@font-face {
-  font-family: "萝莉体 第二版";
-  src: url("/assets/font/loli.ttf") format("truetype");
+  font-family: "HYTMR";
+  src: url("/assets/font/HYTMR45W-Compressed.woff2") format("woff2");
   font-style: normal;
   font-weight: 400;
   font-display: swap;
