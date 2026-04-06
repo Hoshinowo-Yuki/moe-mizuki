@@ -6,6 +6,7 @@ import { devicesData } from "../data/devices";
 import I18nKey from "../i18n/i18nKey";
 import { i18n } from "../i18n/translation";
 import MainGridLayout from "../layouts/MainGridLayout.astro";
+import '../styles/devices-tooltip.css';
 
 export const prerender = true;
 
@@ -94,6 +95,8 @@ const viewDetailsText = i18n(I18nKey.devicesViewDetails);
 
 	<!-- 使用全局脚本，确保 swup 切换后仍能重新初始化 -->
 	<script is:inline src="/js/devices-page-handler.js"></script>
+	<!-- 设备页面专用的 tooltip 脚本 -->
+	<script is:inline src="/js/device-page-tooltip.js"></script>
 </MainGridLayout>
 
 <style>
