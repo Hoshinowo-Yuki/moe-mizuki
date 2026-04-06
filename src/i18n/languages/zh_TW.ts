@@ -3,7 +3,7 @@ import type { Translation } from "../translation";
 
 export const zh_TW: Translation = {
 	[Key.home]: "首頁",
-	[Key.about]: "關於我",
+	[Key.about]: "關於我們",
 	[Key.archive]: "歸檔",
 	[Key.search]: "搜尋",
 	[Key.other]: "其他",
@@ -27,26 +27,17 @@ export const zh_TW: Translation = {
 
 	[Key.comments]: "評論",
 	[Key.friends]: "友鏈",
-	[Key.friendsSubtitle]: "這些都是我的好朋友",
-	[Key.friendsSearchPlaceholder]: "搜尋友鏈名稱或描述...",
+	[Key.friendsSubtitle]: "發現更多優秀網站",
+	[Key.friendsSearchPlaceholder]: "搜索友鏈名稱或描述...",
 	[Key.friendsFilterAll]: "全部",
-	[Key.friendsNoResults]: "找不到符合的友鏈",
-	[Key.friendsVisit]: "造訪",
-	[Key.friendsCopyLink]: "複製連結",
+	[Key.friendsNoResults]: "未找到匹配的友鏈",
+	[Key.friendsVisit]: "訪問",
+	[Key.friendsCopyLink]: "複製鏈接",
 	[Key.friendsCopySuccess]: "已複製",
 	[Key.friendsTags]: "標籤",
 	[Key.untitled]: "無標題",
 	[Key.uncategorized]: "未分類",
 	[Key.noTags]: "無標籤",
-
-	[Key.usefulLinks]: "實用網站",
-	[Key.usefulLinksSubtitle]: "發現更多優質網站",
-	[Key.usefulLinksSearchPlaceholder]: "搜尋連結或描述...",
-	[Key.usefulLinksFilterAll]: "全部",
-	[Key.usefulLinksVisit]: "造訪",
-	[Key.usefulLinksCopyLink]: "複製連結",
-	[Key.usefulLinksCopySuccess]: "已複製",
-	[Key.usefulLinksNoResults]: "未找到符合的連結",
 
 	[Key.wordCount]: "字",
 	[Key.wordsCount]: "字",
@@ -65,7 +56,7 @@ export const zh_TW: Translation = {
 
 	[Key.author]: "作者",
 	[Key.publishedAt]: "發布於",
-	[Key.license]: "授權條款",
+	[Key.license]: "許可協議",
 	[Key.anime]: "追番",
 	[Key.diary]: "日記",
 
@@ -96,8 +87,9 @@ export const zh_TW: Translation = {
 
 	// 短文頁面
 	[Key.diarySubtitle]: "隨時隨地，分享生活",
-	[Key.diaryCount]: "條短文",
-	[Key.diaryReply]: "回復",
+	[Key.diaryNoResults]: "沒有匹配的日記",
+	[Key.diaryCount]: "條日記",
+
 	[Key.diaryTips]: "只展示最近30條日記",
 	[Key.diaryMinutesAgo]: "分鐘前",
 	[Key.diaryHoursAgo]: "小時前",
@@ -141,6 +133,8 @@ export const zh_TW: Translation = {
 	[Key.albumsBackToList]: "返回相冊",
 	[Key.albumsPhotoCount]: "張照片",
 	[Key.albumsPhotosCount]: "張照片",
+	[Key.albumsFilterAll]: "全部",
+	[Key.albumsNoResults]: "沒有匹配的相冊",
 
 	// 專案展示頁面
 	[Key.projects]: "專案展示",
@@ -173,9 +167,9 @@ export const zh_TW: Translation = {
 	[Key.rss]: "RSS 訂閱",
 	[Key.rssDescription]: "訂閱獲取最新更新",
 	[Key.rssSubtitle]: "透過 RSS 訂閱，第一時間獲取最新文章和動態",
-	[Key.rssLink]: "RSS 連結",
-	[Key.rssCopyToReader]: "複製連結到你的 RSS 閱讀器",
-	[Key.rssCopyLink]: "複製連結",
+	[Key.rssLink]: "RSS 鏈接",
+	[Key.rssCopyToReader]: "複製鏈接到你的 RSS 閱讀器",
+	[Key.rssCopyLink]: "複製鏈接",
 	[Key.rssLatestPosts]: "最新文章",
 	[Key.rssWhatIsRSS]: "什麼是 RSS？",
 	[Key.rssWhatIsRSSDescription]:
@@ -186,16 +180,16 @@ export const zh_TW: Translation = {
 	[Key.rssBenefit4]: "享受無廣告的純淨閱讀經驗",
 	[Key.rssHowToUse]:
 		"推薦使用 Feedly、Inoreader 或其他 RSS 閱讀器來訂閱本站。",
-	[Key.rssCopied]: "RSS 連結已複製到剪貼板！",
-	[Key.rssCopyFailed]: "複製失敗，請手動複製連結",
+	[Key.rssCopied]: "RSS 鏈接已複製到剪貼板！",
+	[Key.rssCopyFailed]: "複製失敗，請手動複製鏈接",
 
 	//Atom Feed 頁面
 	[Key.atom]: "Atom 訂閱",
 	[Key.atomDescription]: "訂閱獲取最新更新",
 	[Key.atomSubtitle]: "透過 Atom 訂閱，第一時間獲取最新文章和動態",
-	[Key.atomLink]: "Atom 連結",
-	[Key.atomCopyToReader]: "複製連結到你的 Atom 閱讀器",
-	[Key.atomCopyLink]: "複製連結",
+	[Key.atomLink]: "Atom 鏈接",
+	[Key.atomCopyToReader]: "複製鏈接到你的 Atom 閱讀器",
+	[Key.atomCopyLink]: "複製鏈接",
 	[Key.atomLatestPosts]: "最新文章",
 	[Key.atomWhatIsAtom]: "什麼是 Atom？",
 	[Key.atomWhatIsAtomDescription]:
@@ -206,8 +200,8 @@ export const zh_TW: Translation = {
 	[Key.atomBenefit4]: "享受無廣告的純淨閱讀經驗",
 	[Key.atomHowToUse]:
 		"推薦使用 Feedly、Inoreader 或其他 Atom 閱讀器來訂閱本站。",
-	[Key.atomCopied]: "Atom 連結已複製到剪貼板！",
-	[Key.atomCopyFailed]: "複製失敗，請手動複製連結",
+	[Key.atomCopied]: "Atom 鏈接已複製到剪貼板！",
+	[Key.atomCopyFailed]: "複製失敗，請手動複製鏈接",
 
 	// 技能展示頁面
 	[Key.skills]: "技能展示",
@@ -264,6 +258,7 @@ export const zh_TW: Translation = {
 	[Key.passwordProtected]: "密碼保護",
 	[Key.passwordProtectedTitle]: "此內容受密碼保護",
 	[Key.passwordProtectedDescription]: "請輸入密碼以查看受保護的內容",
+	[Key.postEncrypted]: "已加密",
 	[Key.passwordPlaceholder]: "請輸入密碼",
 	[Key.passwordUnlock]: "解鎖",
 	[Key.passwordUnlocking]: "解鎖中...",
@@ -278,6 +273,7 @@ export const zh_TW: Translation = {
 	[Key.syntaxHighlightFailed]: "語法高亮失敗:",
 	[Key.autoSyntaxHighlightFailed]: "自動語法高亮也失敗:",
 	[Key.decryptionError]: "解密過程中發生錯誤:",
+	[Key.passwordHint]: "提示",
 
 	//最後編輯時間卡片
 	[Key.lastModifiedPrefix]: "距離上次編輯: ",
@@ -351,11 +347,9 @@ export const zh_TW: Translation = {
 	[Key.switchToGridMode]: "切換到網格模式",
 	[Key.switchToListMode]: "切換到列表模式",
 
-	// DevTools檢測
-	[Key.devtoolsMessage]: "開發者模式已開啟，請遵守GPL授權條款。",
-	[Key.devtoolsLinkText]: "查看授權聲明",
-
-	// Uptime and Update
-	[Key.uptime]: "上線時間檢查",
-	[Key.updates]: "更新日誌",
+	// 相关文章与随机文章
+	[Key.relatedPosts]: "相關文章",
+	[Key.randomPosts]: "隨機文章",
+	[Key.smartRecommend]: "智能推薦",
+	[Key.randomRecommend]: "隨機推薦",
 };

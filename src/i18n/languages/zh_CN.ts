@@ -3,7 +3,7 @@ import type { Translation } from "../translation";
 
 export const zh_CN: Translation = {
 	[Key.home]: "主页",
-	[Key.about]: "关于我",
+	[Key.about]: "关于我们",
 	[Key.archive]: "归档",
 	[Key.search]: "搜索",
 	[Key.other]: "其他",
@@ -27,7 +27,7 @@ export const zh_CN: Translation = {
 
 	[Key.comments]: "评论",
 	[Key.friends]: "友链",
-	[Key.friendsSubtitle]: "这些都是我的好朋友",
+	[Key.friendsSubtitle]: "发现更多优质网站",
 	[Key.friendsSearchPlaceholder]: "搜索友链名称或描述...",
 	[Key.friendsFilterAll]: "全部",
 	[Key.friendsNoResults]: "未找到匹配的友链",
@@ -38,15 +38,6 @@ export const zh_CN: Translation = {
 	[Key.untitled]: "无标题",
 	[Key.uncategorized]: "未分类",
 	[Key.noTags]: "无标签",
-
-	[Key.usefulLinks]: "实用网站",
-	[Key.usefulLinksSubtitle]: "发现更多优质网站",
-	[Key.usefulLinksSearchPlaceholder]: "搜索链接或描述...",
-	[Key.usefulLinksFilterAll]: "全部",
-	[Key.usefulLinksVisit]: "访问",
-	[Key.usefulLinksCopyLink]: "复制链接",
-	[Key.usefulLinksCopySuccess]: "已复制",
-	[Key.usefulLinksNoResults]: "未找到匹配的链接",
 
 	[Key.wordCount]: "字",
 	[Key.wordsCount]: "字",
@@ -91,8 +82,9 @@ export const zh_CN: Translation = {
 
 	// 短文页面
 	[Key.diarySubtitle]: "随时随地，分享生活",
-	[Key.diaryCount]: "条短文",
-	[Key.diaryReply]: "回复",
+	[Key.diaryNoResults]: "没有匹配的日记",
+	[Key.diaryCount]: "条日记",
+
 	[Key.diaryTips]: "只展示最近30条日记",
 	[Key.diaryMinutesAgo]: "分钟前",
 	[Key.diaryHoursAgo]: "小时前",
@@ -136,6 +128,8 @@ export const zh_CN: Translation = {
 	[Key.albumsBackToList]: "返回相册",
 	[Key.albumsPhotoCount]: "张照片",
 	[Key.albumsPhotosCount]: "张照片",
+	[Key.albumsFilterAll]: "全部",
+	[Key.albumsNoResults]: "没有匹配的相册",
 
 	// 设备页面
 	[Key.devices]: "我的设备",
@@ -222,6 +216,7 @@ export const zh_CN: Translation = {
 	[Key.passwordProtected]: "密码保护",
 	[Key.passwordProtectedTitle]: "此内容受密码保护",
 	[Key.passwordProtectedDescription]: "请输入密码以查看受保护的内容",
+	[Key.postEncrypted]: "已加密",
 	[Key.passwordPlaceholder]: "请输入密码",
 	[Key.passwordUnlock]: "解锁",
 	[Key.passwordUnlocking]: "解锁中...",
@@ -236,6 +231,7 @@ export const zh_CN: Translation = {
 	[Key.syntaxHighlightFailed]: "语法高亮失败:",
 	[Key.autoSyntaxHighlightFailed]: "自动语法高亮也失败:",
 	[Key.decryptionError]: "解密过程中发生错误:",
+	[Key.passwordHint]: "提示",
 
 	//最后编辑时间卡片
 	[Key.lastModifiedPrefix]: "距离上次编辑: ",
@@ -349,11 +345,9 @@ export const zh_CN: Translation = {
 	[Key.switchToGridMode]: "切换到网格模式",
 	[Key.switchToListMode]: "切换到列表模式",
 
-	// DevTools检测
-	[Key.devtoolsMessage]: '已打开开发者模式，请谨记GPL协议！',
-	[Key.devtoolsLinkText]: '查看博客声明',
-
-	// Uptime和Update
-	[Key.uptime]: "在线时间检查",
-	[Key.updates]: "更新日志",
+	// 相关文章与随机文章
+	[Key.relatedPosts]: "相关文章",
+	[Key.randomPosts]: "随机文章",
+	[Key.smartRecommend]: "智能推荐",
+	[Key.randomRecommend]: "随机推荐",
 };

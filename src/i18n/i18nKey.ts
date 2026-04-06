@@ -58,16 +58,6 @@ enum I18nKey {
 	anime = "anime",
 	diary = "diary",
 
-	// 實用連結頁面
-	usefulLinks = "usefulLinks",
-	usefulLinksSubtitle = "usefulLinksSubtitle",
-	usefulLinksSearchPlaceholder = "usefulLinksSearchPlaceholder",
-	usefulLinksFilterAll = "usefulLinksFilterAll",
-	usefulLinksVisit = "usefulLinksVisit",
-	usefulLinksCopyLink = "usefulLinksCopyLink",
-	usefulLinksCopySuccess = "usefulLinksCopySuccess",
-	usefulLinksNoResults = "usefulLinksNoResults",
-
 	// 番剧页面
 	animeTitle = "animeTitle",
 	animeSubtitle = "animeSubtitle",
@@ -88,8 +78,9 @@ enum I18nKey {
 
 	// 短文页面
 	diarySubtitle = "diarySubtitle",
+	diaryNoResults = "diaryNoResults",
 	diaryCount = "diaryCount",
-	diaryReply = "diaryReply",
+
 	diaryTips = "diaryTips",
 	diaryMinutesAgo = "diaryMinutesAgo",
 	diaryHoursAgo = "diaryHoursAgo",
@@ -133,6 +124,8 @@ enum I18nKey {
 	albumsBackToList = "albumsBackToList",
 	albumsPhotoCount = "albumsPhotoCount",
 	albumsPhotosCount = "albumsPhotosCount",
+	albumsFilterAll = "albumsFilterAll",
+	albumsNoResults = "albumsNoResults",
 
 	// 设备页面
 	devices = "devices",
@@ -219,6 +212,7 @@ enum I18nKey {
 	passwordProtected = "passwordProtected",
 	passwordProtectedTitle = "passwordProtectedTitle",
 	passwordProtectedDescription = "passwordProtectedDescription",
+	postEncrypted = "postEncrypted",
 	passwordPlaceholder = "passwordPlaceholder",
 	passwordUnlock = "passwordUnlock",
 	passwordUnlocking = "passwordUnlocking",
@@ -229,6 +223,7 @@ enum I18nKey {
 	passwordDecryptFailed = "passwordDecryptFailed",
 	passwordDecryptRetry = "passwordDecryptRetry",
 	passwordUnlockButton = "passwordUnlockButton",
+	passwordHint = "passwordHint",
 	copyFailed = "copyFailed",
 	syntaxHighlightFailed = "syntaxHighlightFailed",
 	autoSyntaxHighlightFailed = "autoSyntaxHighlightFailed",
@@ -340,13 +335,11 @@ enum I18nKey {
 	switchToGridMode = "switchToGridMode",
 	switchToListMode = "switchToListMode",
 
-	// DevTools detection
-	devtoolsMessage = 'devtoolsMessage',
-    devtoolsLinkText = 'devtoolsLinkText',
-
-	// Uptime and Update
-	uptime = "uptime",
-	updates = "updates",
+	// 相关文章与随机文章
+	relatedPosts = "relatedPosts",
+	randomPosts = "randomPosts",
+	smartRecommend = "smartRecommend",
+	randomRecommend = "randomRecommend",
 }
 
 export default I18nKey;
