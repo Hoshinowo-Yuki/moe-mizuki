@@ -16,7 +16,7 @@ const map: Record<string, Translation> = {
 	en_gb: en,
 	en_au: en,
 	zh_cn: zh_CN,
-	zh_HK: zh_HK,
+	zh_hk: zh_HK,
 	zh_tw: zh_TW,
 	ja: ja,
 	ja_jp: ja,
