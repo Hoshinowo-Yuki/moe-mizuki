@@ -1,4 +1,5 @@
 import sitemap from "@astrojs/sitemap";
+import mdx from '@astrojs/mdx';
 import svelte, { vitePreprocess } from "@astrojs/svelte";
 import { pluginCollapsibleSections } from "@expressive-code/plugin-collapsible-sections";
 import { pluginLineNumbers } from "@expressive-code/plugin-line-numbers";
@@ -127,6 +128,7 @@ export default defineConfig({
 			preprocess: vitePreprocess(),
 		}),
 		sitemap(),
+		mdx(),
 	],
 	markdown: {
 		remarkPlugins: [
