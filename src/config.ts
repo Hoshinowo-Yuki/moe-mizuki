@@ -303,7 +303,7 @@ export const navBarConfig: NavBarConfig = {
 				},
 				{
 					name: "Threads",
-					url: "https://threads.com/@goldenlight6628",
+					url: "https://threads.com/@taroimomiruku",
 					external: true,
 					icon: "simple-icons:threads",
 				},
@@ -412,7 +412,7 @@ export const profileConfig: ProfileConfig = {
 		{
 			name: "Threads",
 			icon: "simple-icons:threads",
-			url: "https://threads.com/@goldenlight6628",
+			url: "https://threads.com/@taroimomiruku",
 		},
 		{
 			name: "GitHub",
