@@ -104,8 +104,10 @@ const relatedPosts = relatedPostsConfig.enable
 	? await getRelatedPosts(entry, relatedPostsConfig.maxCount)
 	: [];
 
-// Process cover image for SharePoster
+// Process cover image, for both OG and SharePoster
+let ogCoverUrl: string | undefined;
 let posterCoverUrl = entry.data.image;
+
 if (entry.data.image) {
 	const isLocal = !(
 		entry.data.image.startsWith("/") ||
@@ -125,8 +127,11 @@ if (entry.data.image) {
 		if (file) {
 			const img = await file();
 			posterCoverUrl = img.src;
+			ogCoverUrl = img.src;  // resolved local path
 		}
 	} else if (entry.data.image.startsWith("http")) {
+		ogCoverUrl = entry.data.image;  // retain the original URL for OG
+		// Convert to base64 only for poster
 		try {
 			const response = await fetch(entry.data.image);
 			const arrayBuffer = await response.arrayBuffer();
@@ -137,6 +142,8 @@ if (entry.data.image) {
 		} catch {
 			posterCoverUrl = entry.data.image;
 		}
+	} else {
+		ogCoverUrl = entry.data.image;  // absolute path like "/images/foo.png"
 	}
 }
 
