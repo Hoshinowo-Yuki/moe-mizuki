@@ -50,14 +50,14 @@ export default defineConfig({
 			styles: ["normal", "italic"],
 		},
 		{
-			name: "ZenMaruGothic-Medium",
+			name: "Loli",
 			cssVariable: "--font-body",
 			provider: fontProviders.local(),
 			options: {
 				variants: [
 					{
-						src: ["./src/assets/fonts/ZenMaruGothic-Medium.ttf"],
-						weight: "500",
+						src: ["./src/assets/fonts/HYTMR45W-Compressed.woff2"],
+						weight: "400",
 						style: "normal",
 					},
 				],
@@ -65,18 +65,9 @@ export default defineConfig({
 			fallbacks: ["sans-serif"],
 		},
 		{
-			name: "Loli",
+			name: "LXGW WenKai TC",
 			cssVariable: "--font-cjk",
-			provider: fontProviders.local(),
-			options: {
-				variants: [
-					{
-						src: ["./src/assets/fonts/loli.ttf"],
-						weight: "400",
-						style: "normal",
-					},
-				],
-			},
+			provider: fontProviders.google(),
 			fallbacks: ["sans-serif"],
 		},
 	],
