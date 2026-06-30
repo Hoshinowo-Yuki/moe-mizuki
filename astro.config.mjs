@@ -62,7 +62,6 @@ export default defineConfig({
 					},
 				],
 			},
-			fallbacks: ["sans-serif"],
 		},
 		{
 			name: "Loli",
@@ -77,7 +76,6 @@ export default defineConfig({
 					},
 				],
 			},
-			fallbacks: ["sans-serif"],
 		},
 	],
 
