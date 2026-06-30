@@ -1,11 +1,11 @@
-import * as fs from "node:fs";
-
-import type { APIContext, GetStaticPaths } from "astro";
 import type { CollectionEntry } from "astro:content";
 import { getCollection } from "astro:content";
+import * as fs from "node:fs";
+import type { APIContext, GetStaticPaths } from "astro";
 import satori from "satori";
 import sharp from "sharp";
 
+import { getPostPublicDescription } from "@/utils/post-card-content";
 import { removeFileExtension } from "@/utils/url-utils";
 
 import { profileConfig, siteConfig } from "../../config";
@@ -109,39 +109,12 @@ export async function GET({
 	const { post } = props;
 
 	// Try to fetch fonts from Google Fonts (woff2) at runtime.
-	const { regular: fontRegular, bold: fontBold } =
-		await fetchNotoSansSCFonts();
+	const { regular: fontRegular, bold: fontBold } = await fetchNotoSansSCFonts();
 
-	// Avatar: handle remote URLs, local files, or missing avatar
-	let avatarBase64 = "";
-	if (profileConfig.avatar) {
-		if (profileConfig.avatar.startsWith('http://') || profileConfig.avatar.startsWith('https://')) {
-			try {
-				const avatarResp = await fetch(profileConfig.avatar);
-				if (avatarResp.ok) {
-					const avatarArrayBuffer = await avatarResp.arrayBuffer();
-					// Convert to PNG since satori doesn't support WebP
-					const pngBuffer = await sharp(Buffer.from(avatarArrayBuffer)).png().toBuffer();
-					avatarBase64 = `data:image/png;base64,${pngBuffer.toString("base64")}`;
-				}
-			} catch (err) {
-				throw new Error(`Failed to fetch remote avatar: ${err}`);
-			}
-		} else {
-			try {
-				const avatarBuffer = fs.readFileSync(`./src/${profileConfig.avatar}`);
-				// Convert to PNG in case it's WebP or another unsupported format
-				const pngBuffer = await sharp(avatarBuffer).png().toBuffer();
-				avatarBase64 = `data:image/png;base64,${pngBuffer.toString("base64")}`;
-			} catch (err) {
-				throw new Error(`Failed to read local avatar: ${err}`);
-			}
-		}
-	} else {
-		throw new Error("Avatar configuration is missing");
-	}
+	// Avatar + icon: still read from disk (small assets)
+	const avatarBuffer = fs.readFileSync(`./src/${profileConfig.avatar}`);
+	const avatarBase64 = `data:image/png;base64,${avatarBuffer.toString("base64")}`;
 
-	// Icon: still read from disk (small assets)
 	let iconPath = "./public/favicon/favicon.ico";
 	if (siteConfig.favicon.length > 0) {
 		iconPath = `./public${siteConfig.favicon[0].src}`;
@@ -162,7 +135,7 @@ export async function GET({
 		day: "numeric",
 	});
 
-	const description = post.data.description;
+	const description = getPostPublicDescription(post.data);
 
 	const template = {
 		type: "div",
@@ -237,8 +210,7 @@ export async function GET({
 												style: {
 													width: "10px",
 													height: "68px",
-													backgroundColor:
-														primaryColor,
+													backgroundColor: primaryColor,
 													borderRadius: "6px",
 													marginTop: "14px",
 												},
