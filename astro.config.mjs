@@ -62,7 +62,6 @@ export default defineConfig({
 					},
 				],
 			},
-			fallbacks: ["sans-serif"],
 		},
 		{
 			name: "LXGW WenKai TC",
