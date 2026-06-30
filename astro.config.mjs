@@ -51,7 +51,7 @@ export default defineConfig({
 		},
 		{
 			name: "Loli",
-			cssVariable: "--font-body",
+			cssVariable: "--font-cjk",
 			provider: fontProviders.local(),
 			options: {
 				variants: [
@@ -62,10 +62,11 @@ export default defineConfig({
 					},
 				],
 			},
+			fallbacks: ["sans-serif"],
 		},
 		{
 			name: "LXGW WenKai TC",
-			cssVariable: "--font-cjk",
+			cssVariable: "--font-body",
 			provider: fontProviders.google(),
 			fallbacks: ["sans-serif"],
 		},
