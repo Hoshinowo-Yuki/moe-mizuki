@@ -1,11 +1,12 @@
 <script lang="ts">
-	import type { Snippet } from "svelte";
-	import type { TagChipProps } from "./types";
+import type { Snippet } from "svelte";
 
-	interface Props extends TagChipProps {
-		children?: Snippet;
-	}
-	const { href, label, class: className = "", children }: Props = $props();
+import type { TagChipProps } from "./types";
+
+interface Props extends TagChipProps {
+	children?: Snippet;
+}
+const { href, label, class: className = "", children }: Props = $props();
 </script>
 
 {#if href}

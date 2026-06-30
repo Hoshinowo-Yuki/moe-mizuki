@@ -6,6 +6,7 @@ encrypted: true
 pinned: true
 password: "123456"
 passwordHint: "123456"
+hideHomeContent: true
 alias: "encrypted-example"
 tags: ["Test", "Encryption"]
 category: "Technology"
@@ -27,7 +28,31 @@ draft: false
 ---
 ```
 
+:::chat
+[芋泥|2026-02-23|right]
+我的domain name再度成功被學校ban掉了
 
+[脆友1|2026-02-23]
+這是Palo Alto防火牆的URL Filtering 功能阻擋的，那個domain name應該會被各大資安大廠列在Adult才對😑
+
+你可以到這個網站查查：
+https://urlfiltering.paloaltonetworks.com
+
+[脆友2|2026-02-23]
+單純他看你不爽吧
+
+[脆友3|2026-02-23]
+TLD 的問題？
+
+[脆友4|2026-02-24]
+誰叫你要用這麼名字🤣…
+
+[脆友5|2026-02-24]
+因為網址有WTF字眼？
+
+[脆友6|2026-02-24]
+用個正常啲嘅 domain name 唔得嘅
+:::
 
 
 
@@ -48,6 +73,7 @@ draft: false
 | `encrypted`   | Whether this post is password protected.                                                                                                                                                                    |
 | `password`    | The password to unlock the encrypted post.                                                                                                                                                                  |
 | `passwordHint`| A hint to help users remember the password. Displayed below the password input.                                                                                                                             |
+| `hideHomeContent` | Whether to hide public post summaries, including the home page, meta tags, feed/API summaries, and share previews. Defaults to `true` when `password` is set.                                      |
 
 ## Where to Place the Post Files
 
@@ -112,6 +138,7 @@ published: 2024-01-15
 encrypted: true
 password: "my-secret-password"
 passwordHint: "Hint: The password is my dog's name"
+hideHomeContent: true
 ---
 ```
 
@@ -122,6 +149,7 @@ passwordHint: "Hint: The password is my dog's name"
 | `encrypted`    | Yes      | Set to `true` to enable password protection              |
 | `password`     | Yes      | The password to unlock the post                          |
 | `passwordHint` | No       | A hint displayed below the password input to help users |
+| `hideHomeContent` | No   | Hide public summaries as `该文章已加密`. Defaults to `true` when `password` is set. Set to `false` to show the normal summary. |
 
 ### How the Unlock Box Looks
 
