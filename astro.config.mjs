@@ -62,6 +62,8 @@ export default defineConfig({
 					},
 				],
 			},
+			fallbacks: [],
+			optimizedFallbacks: false,
 		},
 		{
 			name: "Loli",
@@ -76,6 +78,8 @@ export default defineConfig({
 					},
 				],
 			},
+			fallbacks: [],
+			optimizedFallbacks: false,
 		},
 	],
 
