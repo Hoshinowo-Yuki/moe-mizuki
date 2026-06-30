@@ -52,16 +52,7 @@ export default defineConfig({
 		{
 			name: "LXGW WenKai TC",
 			cssVariable: "--font-cjk",
-			provider: fontProviders.local(),
-			options: {
-				variants: [
-					{
-						src: ["./src/assets/fonts/LXGWWenKaiTC-Regular.ttf"],
-						weight: "400",
-						style: "normal",
-					},
-				],
-			},
+			provider: fontProviders.google(),
 			fallbacks: [],
 			optimizedFallbacks: false,
 		},
