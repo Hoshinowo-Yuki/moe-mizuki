@@ -4,9 +4,6 @@ const robotsTxt = `
 User-agent: facebookexternalhit
 Allow: /
 
-User-agent: Facebot
-Allow: /
-
 User-agent: *
 Disallow: /
 Allow: /$
